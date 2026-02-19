@@ -4,6 +4,7 @@ import CodeEditor from "./components/CodeEditor/CodeEditor";
 import Header from "./components/Header/Header";
 import { AxeResults } from "axe-core";
 import ScoreDisplay from "./components/ScoreDisplay/ScoreDisplay";
+import IssuesList from "./components/IssuesList/IssuesList";
 
 function App() {
   const [code, setCode] = useState<string>(
@@ -24,6 +25,7 @@ function App() {
       <CodeEditor code={code} setCode={setCode} />
       <AnalyzerButton code={code} setResults={setResults} />
       <ScoreDisplay results={results} />
+      <IssuesList results={results} />
     </main>
   );
 }
