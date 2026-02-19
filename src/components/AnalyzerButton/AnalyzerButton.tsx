@@ -10,9 +10,12 @@ export default function AnalyzerButton({ code, setResults }: ButtonProps) {
       setLoading(true);
       const div = document.createElement("div");
       div.innerHTML = code;
-      div.style.display = "none";
+      div.style.position = "absolute";
+      div.style.left = "-9999px";
+      div.style.top = "0";
       document.body.appendChild(div);
       const result = await axe.run(div);
+      console.log(result);
       setResults(result);
       document.body.removeChild(div);
     } catch (err) {

@@ -3,6 +3,7 @@ import AnalyzerButton from "./components/AnalyzerButton/AnalyzerButton";
 import CodeEditor from "./components/CodeEditor/CodeEditor";
 import Header from "./components/Header/Header";
 import { AxeResults } from "axe-core";
+import ScoreDisplay from "./components/ScoreDisplay/ScoreDisplay";
 
 function App() {
   const [code, setCode] = useState<string>(
@@ -22,6 +23,7 @@ function App() {
       <Header />
       <CodeEditor code={code} setCode={setCode} />
       <AnalyzerButton code={code} setResults={setResults} />
+      <ScoreDisplay results={results} />
     </main>
   );
 }
