@@ -33,6 +33,7 @@ function App() {
               setResults(null);
               localStorage.removeItem("currentSnippet");
             }}
+            disabled={!code}
           >
             Clear
           </PrimaryButton>
