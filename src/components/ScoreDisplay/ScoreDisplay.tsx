@@ -1,4 +1,4 @@
-import type { ScoreDisplayProps } from "./ScoreDisplay.types";
+import type { ResultsProps } from "./ScoreDisplay.types";
 
 const weights: Record<string, number> = {
   critical: 25,
@@ -14,7 +14,7 @@ const bulletColor: Record<string, string> = {
   minor: "bg-blue-500",
 };
 
-export default function ScoreDisplay({ results }: ScoreDisplayProps) {
+export default function ScoreDisplay({ results }: ResultsProps) {
   if (!results) return null;
 
   const totalPenaltyScore = results.violations.reduce((acc, viol) => {

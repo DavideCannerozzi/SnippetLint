@@ -5,6 +5,7 @@ import Header from "./components/Header/Header";
 import { AxeResults } from "axe-core";
 import ScoreDisplay from "./components/ScoreDisplay/ScoreDisplay";
 import IssuesList from "./components/IssuesList/IssuesList";
+import PrimaryButton from "./components/PrimaryButton/PrimaryButton";
 
 function App() {
   const [code, setCode] = useState<string>(
@@ -22,12 +23,23 @@ function App() {
   return (
     <main>
       <Header />
-      <div className="container mx-auto p-4">
+      <section className="container mx-auto p-4">
         <CodeEditor code={code} setCode={setCode} />
-        <AnalyzerButton code={code} setResults={setResults} />
+        <section className="flex items-center gap-4">
+          <AnalyzerButton code={code} setResults={setResults} />
+          <PrimaryButton
+            onClick={() => {
+              setCode("");
+              setResults(null);
+              localStorage.removeItem("currentSnippet");
+            }}
+          >
+            Clear
+          </PrimaryButton>
+        </section>
         <ScoreDisplay results={results} />
         <IssuesList results={results} />
-      </div>
+      </section>
     </main>
   );
 }

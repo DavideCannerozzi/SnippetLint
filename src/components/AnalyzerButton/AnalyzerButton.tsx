@@ -1,6 +1,7 @@
 import axe from "axe-core";
 import type { ButtonProps } from "./AnalyzerButton.types";
 import { useState } from "react";
+import PrimaryButton from "../PrimaryButton/PrimaryButton";
 
 export default function AnalyzerButton({ code, setResults }: ButtonProps) {
   const [error, setError] = useState<Error | null>(null);
@@ -27,12 +28,9 @@ export default function AnalyzerButton({ code, setResults }: ButtonProps) {
 
   return (
     <div>
-      <button
-        className="bg-sky-900 text-white py-4 px-12 mt-8"
-        onClick={handleAnalyze}
-      >
+      <PrimaryButton onClick={handleAnalyze}>
         {loading ? "Loading..." : "Analyze"}
-      </button>
+      </PrimaryButton>
       {error && <p className="text-red-600">{error.message}</p>}
     </div>
   );

@@ -1,6 +1,6 @@
-import type { ScoreDisplayProps } from "../ScoreDisplay/ScoreDisplay.types";
+import type { ResultsProps } from "../ScoreDisplay/ScoreDisplay.types";
 
-export default function IssuesList({ results }: ScoreDisplayProps) {
+export default function IssuesList({ results }: ResultsProps) {
   if (!results) return null;
   if (results.violations.length === 0) return <p>No issues found.</p>;
   return (
