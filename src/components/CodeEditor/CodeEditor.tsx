@@ -6,18 +6,18 @@ import "prismjs/components/prism-javascript";
 
 export default function CodeEditor({ code, setCode }: CodeEditorProps) {
   return (
-    <div>
-      <Editor
-        value={code}
-        onValueChange={(code) => setCode(code)}
-        highlight={(code) => highlight(code, languages.js)}
-        padding={10}
-        style={{
-          fontFamily: '"Fira code", "Fira Mono", monospace',
-          fontSize: 12,
-          border: "1px solid lightblue",
-        }}
-      />
-    </div>
+    <Editor
+      value={code}
+      onValueChange={(code) => setCode(code)}
+      highlight={(code) => highlight(code, languages.js)}
+      padding={20}
+      style={{
+        fontFamily: '"Fira code", "Fira Mono", monospace',
+        fontSize: 14,
+        minHeight: "250px",
+        maxHeight: "60vh",
+        border: "1px solid black",
+      }}
+    />
   );
 }

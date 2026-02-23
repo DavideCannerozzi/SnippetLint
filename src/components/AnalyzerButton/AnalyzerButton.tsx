@@ -27,7 +27,10 @@ export default function AnalyzerButton({ code, setResults }: ButtonProps) {
 
   return (
     <div>
-      <button onClick={handleAnalyze}>
+      <button
+        className="bg-sky-900 text-white py-4 px-12 mt-8"
+        onClick={handleAnalyze}
+      >
         {loading ? "Loading..." : "Analyze"}
       </button>
       {error && <p className="text-red-600">{error.message}</p>}

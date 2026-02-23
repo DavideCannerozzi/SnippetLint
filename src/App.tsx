@@ -22,10 +22,12 @@ function App() {
   return (
     <main>
       <Header />
-      <CodeEditor code={code} setCode={setCode} />
-      <AnalyzerButton code={code} setResults={setResults} />
-      <ScoreDisplay results={results} />
-      <IssuesList results={results} />
+      <div className="container mx-auto p-4">
+        <CodeEditor code={code} setCode={setCode} />
+        <AnalyzerButton code={code} setResults={setResults} />
+        <ScoreDisplay results={results} />
+        <IssuesList results={results} />
+      </div>
     </main>
   );
 }

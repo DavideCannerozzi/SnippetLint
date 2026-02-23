@@ -7,6 +7,13 @@ const weights: Record<string, number> = {
   minor: 1,
 };
 
+const bulletColor: Record<string, string> = {
+  critical: "bg-red-500",
+  serious: "bg-orange-500",
+  moderate: "bg-yellow-500",
+  minor: "bg-blue-500",
+};
+
 export default function ScoreDisplay({ results }: ScoreDisplayProps) {
   if (!results) return null;
 
@@ -17,14 +24,19 @@ export default function ScoreDisplay({ results }: ScoreDisplayProps) {
   const score = Math.max(0, 100 - totalPenaltyScore);
 
   return (
-    <>
-      <h2>Accessibility Score</h2>
-      <p>{score} / 100</p>
-      <ul>
+    <div className="mt-12 bg-gray-100 border border-black-500 p-8">
+      <h2 className="font-bold">Accessibility Score</h2>
+      <p className="mt-6">{score} / 100</p>
+      <ul className="flex gap-8">
         {results.violations.map((violation) => (
-          <li key={violation.id}>{violation.impact}</li>
+          <li key={violation.id}>
+            <span
+              className={`w-3 h-3 mr-2 ${bulletColor[violation.impact ?? ""] ?? "bg-gray-500"} rounded-full inline-block`}
+            ></span>
+            {violation.impact}
+          </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }
