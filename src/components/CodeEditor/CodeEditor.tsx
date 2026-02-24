@@ -11,6 +11,7 @@ export default function CodeEditor({ code, setCode }: CodeEditorProps) {
       onValueChange={(code) => setCode(code)}
       highlight={(code) => highlight(code, languages.js)}
       padding={20}
+      placeholder="<!-- Paste your HTML snippet here -->"
       style={{
         fontFamily: '"Fira code", "Fira Mono", monospace',
         fontSize: 14,

@@ -27,7 +27,7 @@ export default function ScoreDisplay({ results }: ResultsProps) {
     <div className="mt-12 bg-gray-100 border border-black-500 p-8">
       <h2 className="font-bold">Accessibility Score</h2>
       <p className="mt-6">{score} / 100</p>
-      <ul className="flex gap-8">
+      <ul className="flex gap-8 mt-4">
         {results.violations.map((violation) => (
           <li key={violation.id}>
             <span
