@@ -12,6 +12,7 @@ function App() {
     () => localStorage.getItem("currentSnippet") || "",
   );
   const [results, setResults] = useState<AxeResults | null>(null);
+  const [theme, setTheme] = useState<boolean>(false);
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -21,10 +22,10 @@ function App() {
   }, [code]);
 
   return (
-    <main>
-      <Header />
+    <main className="bg-slate-50 dark:bg-slate-900 min-h-screen">
+      <Header theme={theme} setTheme={setTheme} />
       <section className="container mx-auto p-4">
-        <CodeEditor code={code} setCode={setCode} />
+        <CodeEditor code={code} setCode={setCode} theme={theme} />
         <section className="flex items-center gap-4">
           <AnalyzerButton code={code} setResults={setResults} />
           <PrimaryButton

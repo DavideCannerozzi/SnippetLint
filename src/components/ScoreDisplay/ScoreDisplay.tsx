@@ -24,8 +24,10 @@ export default function ScoreDisplay({ results }: ResultsProps) {
   const score = Math.max(0, 100 - totalPenaltyScore);
 
   return (
-    <div className="mt-12 bg-gray-100 border border-black-500 p-8">
-      <h2 className="font-bold">Accessibility Score</h2>
+    <div className="mt-12 bg-gray-100 border border-black-500 p-8 dark:bg-gray-800 dark:border-white dark:text-white">
+      <h2 className="font-bold text-slate-900 dark:text-white">
+        Accessibility Score
+      </h2>
       <p className="mt-6">{score} / 100</p>
       <ul className="flex gap-8 mt-4">
         {results.violations.map((violation) => (
