@@ -1,11 +1,6 @@
 import type { ThemeProps } from "./Header.types";
 
-export default function Header({ theme, setTheme }: ThemeProps) {
-  const handleTheme = () => {
-    document.documentElement.classList.toggle("dark");
-    setTheme(!theme);
-  };
-
+export default function Header({ theme, handleTheme }: ThemeProps) {
   return (
     <header className="flex flex-col md:flex-row justify-between border-b-2 border-b-cyan-800 p-8 text-slate-900 dark:text-slate-100 ">
       <h1>Snippet Lint</h1>

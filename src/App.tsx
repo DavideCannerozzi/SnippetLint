@@ -6,13 +6,14 @@ import { AxeResults } from "axe-core";
 import ScoreDisplay from "./components/ScoreDisplay/ScoreDisplay";
 import IssuesList from "./components/IssuesList/IssuesList";
 import PrimaryButton from "./components/PrimaryButton/PrimaryButton";
+import { useTheme } from "./hooks/useTheme";
 
 function App() {
   const [code, setCode] = useState<string>(
     () => localStorage.getItem("currentSnippet") || "",
   );
   const [results, setResults] = useState<AxeResults | null>(null);
-  const [theme, setTheme] = useState<boolean>(false);
+  const { theme, handleTheme } = useTheme();
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -23,7 +24,7 @@ function App() {
 
   return (
     <main className="bg-slate-50 dark:bg-slate-900 min-h-screen">
-      <Header theme={theme} setTheme={setTheme} />
+      <Header theme={theme} handleTheme={handleTheme} />
       <section className="container mx-auto p-4">
         <CodeEditor code={code} setCode={setCode} theme={theme} />
         <section className="flex items-center gap-4">
