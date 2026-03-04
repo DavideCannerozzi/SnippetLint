@@ -1,4 +1,4 @@
-import type { ResultsProps } from "./ScoreDisplay.types";
+import type { ResultsProps } from "../../types";
 
 const weights: Record<string, number> = {
   critical: 25,

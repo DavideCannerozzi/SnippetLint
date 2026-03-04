@@ -1,4 +1,4 @@
-import type { ResultsProps } from "../ScoreDisplay/ScoreDisplay.types";
+import type { ResultsProps } from "../../types";
 
 export default function IssuesList({ results }: ResultsProps) {
   if (!results) return null;
