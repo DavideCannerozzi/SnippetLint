@@ -1,73 +1,105 @@
-# React + TypeScript + Vite
+# SnippetLint
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SnippetLint is a lightweight accessibility auditing tool for HTML snippets.
+It helps developers catch accessibility issues early, without setting up a full project.
+Using axe-core, it returns a weighted accessibility score, a list of violations, and links to documentation, so you know what to fix and why.
 
-Currently, two official plugins are available:
+🔗 **Live Demo:** [snippetlint.netlify.app](https://snippetlint.netlify.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Screenshots
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+![With errors](./src/assets/snippet-ui-errors.png)
+![Dark mode - no errors](./src/assets/snippet-ui-dark-noerror.png)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Features
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Paste any HTML snippet and run an instant accessibility audit
+- Accessibility score out of 100, calculated by violation severity
+- Color-coded severity indicators (critical, serious, moderate, minor)
+- Detailed issue list with descriptions and links to Deque documentation
+- Snippet persistence via localStorage with debounced autosave
+- Dark / Light mode toggle
+- Fully responsive layout
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Tech Stack
+
+- **React 18 and Typescript**
+- **axe-core** 
+- **Tailwind CSS** 
+- **react-simple-code-editor** + **Prism.js** 
+- **Vite** 
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm
+
+### Installation
+```bash
+git clone https://github.com/DavideCannerozzi/SnippetLint.git
+cd SnippetLint
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Project Structure
 ```
+src/
+ ├─ components/        # UI components
+ │   ├─ AnalyzerButton/
+ │   ├─ CodeEditor/
+ │   ├─ Header/
+ │   ├─ IssuesList/
+ │   ├─ PrimaryButton/
+ │   └─ ScoreDisplay/
+ ├─ hooks/             # Custom hooks
+ │   ├─ useAnalyzer.ts
+ │   └─ useTheme.ts
+ ├─ types/             # Shared TypeScript types
+ │   └─ index.ts
+ └─ App.tsx
+```
+
+---
+
+## How It Works
+
+1. Paste an HTML snippet into the editor
+2. Click **Analyze**
+3. axe-core injects the snippet into a hidden DOM node and runs its accessibility audit
+4. Results are displayed as a score and a categorized list of violations
+
+---
+
+## Scoring
+
+Violations are weighted by impact level:
+
+| Impact   | Weight |
+|----------|--------|
+| Critical | 25     |
+| Serious  | 10     |
+| Moderate | 5      |
+| Minor    | 1      |
+
+The final score is `Math.max(0, 100 - total weight)`.
+
+---
+
+## License
+
+MIT — [Davide Cannerozzi](https://www.linkedin.com/in/davide-cannerozzi-developer/)
