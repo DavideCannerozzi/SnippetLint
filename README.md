@@ -1,17 +1,15 @@
 # SnippetLint
 
-SnippetLint is a lightweight accessibility auditing tool for HTML snippets.
-It helps developers catch accessibility issues early, without setting up a full project.
-Using axe-core, it returns a weighted accessibility score, a list of violations, and links to documentation, so you know what to fix and why.
+**SnippetLint** is a lightweight accessibility analysis tool built with React and TypeScript. It allows developers to quickly evaluate HTML snippets using the axe-core engine and receive structured feedback, impact severity, and an accessibility score.
 
-🔗 **Live Demo:** [snippetlint.netlify.app](https://snippetlint.netlify.app)
+🔗 **Live Demo:** <a href="https://snippetlint.netlify.app" target="_blank" rel="noopener noreferrer">snippetlint.netlify.app</a>
 
 ---
 
 ## Screenshots
 
-![With errors](./src/assets/snippet-ui-errors.png)
-![Dark mode - no errors](./src/assets/snippet-ui-dark-noerror.png)
+![With errors](./assets/snippet-ui-errors.png)
+![Dark mode - no errors](./assets/snippet-ui-dark-noerror.png)
 
 ---
 
@@ -29,11 +27,11 @@ Using axe-core, it returns a weighted accessibility score, a list of violations,
 
 ## Tech Stack
 
-- **React 18 and Typescript**
-- **axe-core** 
-- **Tailwind CSS** 
-- **react-simple-code-editor** + **Prism.js** 
-- **Vite** 
+- **React 18** with TypeScript
+- **axe-core** — accessibility analysis engine
+- **Tailwind CSS** — styling and dark mode
+- **react-simple-code-editor** + **Prism.js** — syntax-highlighted editor
+- **Vite** — build tool
 
 ---
 
@@ -45,6 +43,7 @@ Using axe-core, it returns a weighted accessibility score, a list of violations,
 - npm
 
 ### Installation
+
 ```bash
 git clone https://github.com/DavideCannerozzi/SnippetLint.git
 cd SnippetLint
@@ -57,6 +56,7 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 ---
 
 ## Project Structure
+
 ```
 src/
  ├─ components/        # UI components
@@ -89,17 +89,17 @@ src/
 
 Violations are weighted by impact level:
 
-| Impact   | Weight |
-|----------|--------|
-| Critical | 25     |
-| Serious  | 10     |
-| Moderate | 5      |
-| Minor    | 1      |
+| Impact   | Penalty |
+| -------- | ------- |
+| Critical | -25     |
+| Serious  | -10     |
+| Moderate | -5      |
+| Minor    | -1      |
 
-The final score is `Math.max(0, 100 - total weight)`.
+The final score is `max(0, 100 - total penalty)`.
 
 ---
 
 ## License
 
-MIT — [Davide Cannerozzi](https://www.linkedin.com/in/davide-cannerozzi-developer/)
+MIT

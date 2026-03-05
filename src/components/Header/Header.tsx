@@ -17,7 +17,13 @@ export default function Header({ theme, handleTheme }: ThemeProps) {
               </a>
             </li>
             <li>
-              <a href="#">Documentation</a>
+              <a
+                href="https://github.com/DavideCannerozzi/SnippetLint/blob/master/README.md"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Documentation
+              </a>
             </li>
           </ul>
           <button onClick={handleTheme}>{theme ? "Light" : "Dark"}</button>
