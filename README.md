@@ -1,15 +1,17 @@
 # SnippetLint
 
-**SnippetLint** is a lightweight accessibility analysis tool built with React and TypeScript. It allows developers to quickly evaluate HTML snippets using the axe-core engine and receive structured feedback, impact severity, and an accessibility score.
+SnippetLint is a lightweight accessibility auditing tool for HTML snippets.
+It helps developers catch accessibility issues early, without setting up a full project.
+Using axe-core, it returns a weighted accessibility score, a list of violations, and links to documentation, so you know what to fix and why.
 
-🔗 **Live Demo:** <a href="https://snippetlint.netlify.app" target="_blank" rel="noopener noreferrer">snippetlint.netlify.app</a>
+🔗 **Live Demo:** [snippetlint.netlify.app](https://snippetlint.netlify.app)
 
 ---
 
 ## Screenshots
 
-![With errors](./assets/snippet-ui-errors.png)
-![Dark mode - no errors](./assets/snippet-ui-dark-noerror.png)
+![With errors](./src/assets/snippet-ui-errors.png)
+![Dark mode - no errors](./src/assets/snippet-ui-dark-noerror.png)
 
 ---
 
@@ -89,17 +91,17 @@ src/
 
 Violations are weighted by impact level:
 
-| Impact   | Penalty |
-| -------- | ------- |
-| Critical | -25     |
-| Serious  | -10     |
-| Moderate | -5      |
-| Minor    | -1      |
+| Impact   | Weight |
+| -------- | ------ |
+| Critical | 25     |
+| Serious  | 10     |
+| Moderate | 5      |
+| Minor    | 1      |
 
-The final score is `max(0, 100 - total penalty)`.
+The final score is `Math.max(0, 100 - total weight)`.
 
 ---
 
 ## License
 
-MIT
+MIT — [Davide Cannerozzi](https://www.linkedin.com/in/davide-cannerozzi-developer/)
