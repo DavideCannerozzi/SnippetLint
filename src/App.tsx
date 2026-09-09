@@ -7,6 +7,7 @@ import ScoreDisplay from "./components/ScoreDisplay/ScoreDisplay";
 import IssuesList from "./components/IssuesList/IssuesList";
 import PrimaryButton from "./components/PrimaryButton/PrimaryButton";
 import { useTheme } from "./hooks/useTheme";
+import { useAnalyzer } from "./hooks/useAnalyzer";
 
 function App() {
   const [code, setCode] = useState<string>(
@@ -14,6 +15,7 @@ function App() {
   );
   const [results, setResults] = useState<AxeResults | null>(null);
   const { theme, handleTheme } = useTheme();
+  const { handleAnalyze, loading, error } = useAnalyzer(code, setResults);
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -28,14 +30,19 @@ function App() {
       <section className="container mx-auto p-4">
         <CodeEditor code={code} setCode={setCode} theme={theme} />
         <section className="flex items-center gap-4">
-          <AnalyzerButton code={code} setResults={setResults} />
+          <AnalyzerButton
+            code={code}
+            handleAnalyze={handleAnalyze}
+            error={error}
+            loading={loading}
+          />
           <PrimaryButton
             onClick={() => {
               setCode("");
               setResults(null);
               localStorage.removeItem("currentSnippet");
             }}
-            disabled={!code}
+            disabled={!code || loading}
           >
             Clear
           </PrimaryButton>

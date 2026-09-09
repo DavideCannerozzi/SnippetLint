@@ -1,6 +1,7 @@
-import type axe from "axe-core";
-
 export interface ButtonProps {
   code: string;
-  setResults: (results: axe.AxeResults) => void;
+
+  error: Error | null;
+  loading: boolean;
+  handleAnalyze: () => void;
 }
