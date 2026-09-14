@@ -4,8 +4,8 @@ export default function Header({ theme, handleTheme }: ThemeProps) {
   return (
     <header className="flex flex-col md:flex-row justify-between border-b-2 border-b-cyan-800 p-8 text-slate-900 dark:text-slate-100 ">
       <h1>Snippet Lint</h1>
-      <nav>
-        <div className="flex items-center gap-8 md:gap-24 mt-12 md:mt-0">
+      <div className="mt-12 flex flex-col items-start gap-8 md:mt-0 md:flex-row md:items-center md:gap-24">
+        <nav>
           <ul className="flex flex-col md:flex-row gap-8 md:gap-24 m-0 p-0 list-none">
             <li>
               <a
@@ -26,9 +26,9 @@ export default function Header({ theme, handleTheme }: ThemeProps) {
               </a>
             </li>
           </ul>
-          <button onClick={handleTheme}>{theme ? "Light" : "Dark"}</button>
-        </div>
-      </nav>
+        </nav>
+        <button onClick={handleTheme}>{theme ? "Light" : "Dark"}</button>
+      </div>
     </header>
   );
 }

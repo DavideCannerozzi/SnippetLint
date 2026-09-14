@@ -43,7 +43,7 @@ function App() {
           theme={theme}
           handleEditorKeyDown={handleEditorKeyDown}
         />
-        <section className="flex items-center gap-4">
+        <section className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
           <AnalyzerButton
             code={code}
             handleAnalyze={handleAnalyze}
