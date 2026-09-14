@@ -4,7 +4,12 @@ import { highlight, languages } from "prismjs/components/prism-core";
 import "prismjs/components/prism-clike";
 import "prismjs/components/prism-javascript";
 
-export default function CodeEditor({ code, setCode, theme }: CodeEditorProps) {
+export default function CodeEditor({
+  code,
+  setCode,
+  theme,
+  handleEditorKeyDown,
+}: CodeEditorProps) {
   return (
     <Editor
       value={code}
@@ -21,6 +26,7 @@ export default function CodeEditor({ code, setCode, theme }: CodeEditorProps) {
         backgroundColor: theme ? "#0f172a" : "#ffffff",
         color: theme ? "#e2e8f0" : "#0f172a",
       }}
+      onKeyDown={handleEditorKeyDown}
     />
   );
 }

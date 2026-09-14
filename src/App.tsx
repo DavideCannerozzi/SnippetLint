@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import AnalyzerButton from "./components/AnalyzerButton/AnalyzerButton";
 import CodeEditor from "./components/CodeEditor/CodeEditor";
 import Header from "./components/Header/Header";
@@ -17,6 +17,15 @@ function App() {
   const { theme, handleTheme } = useTheme();
   const { handleAnalyze, loading, error } = useAnalyzer(code, setResults);
 
+  const buttonsRef = useRef<HTMLButtonElement>(null);
+
+  const handleEditorKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      buttonsRef.current?.focus();
+    }
+  };
+
   useEffect(() => {
     const handler = setTimeout(() => {
       localStorage.setItem("currentSnippet", code);
@@ -28,13 +37,19 @@ function App() {
     <main className="bg-slate-50 dark:bg-slate-900 min-h-screen">
       <Header theme={theme} handleTheme={handleTheme} />
       <section className="container mx-auto p-4">
-        <CodeEditor code={code} setCode={setCode} theme={theme} />
+        <CodeEditor
+          code={code}
+          setCode={setCode}
+          theme={theme}
+          handleEditorKeyDown={handleEditorKeyDown}
+        />
         <section className="flex items-center gap-4">
           <AnalyzerButton
             code={code}
             handleAnalyze={handleAnalyze}
             error={error}
             loading={loading}
+            buttonsRef={buttonsRef}
           />
           <PrimaryButton
             onClick={() => {

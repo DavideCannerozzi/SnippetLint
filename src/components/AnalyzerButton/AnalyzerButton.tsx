@@ -6,10 +6,15 @@ export default function AnalyzerButton({
   handleAnalyze,
   error,
   loading,
+  buttonsRef,
 }: ButtonProps) {
   return (
     <div>
-      <PrimaryButton onClick={handleAnalyze} disabled={!code || loading}>
+      <PrimaryButton
+        onClick={handleAnalyze}
+        disabled={!code || loading}
+        buttonsRef={buttonsRef}
+      >
         {loading ? "Loading..." : "Analyze"}
       </PrimaryButton>
       {error && <p className="text-red-600">{error.message}</p>}
