@@ -22,6 +22,7 @@ export default function CodeEditor({
         fontSize: 14,
         minHeight: "250px",
         maxHeight: "60vh",
+        overflowY: "auto",
         border: theme ? "1px solid #ffffff" : "1px solid black",
         backgroundColor: theme ? "#0f172a" : "#ffffff",
         color: theme ? "#e2e8f0" : "#0f172a",
