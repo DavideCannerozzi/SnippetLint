@@ -14,8 +14,8 @@ const bulletColor: Record<string, string> = {
   minor: "bg-blue-500",
 };
 
-export default function ScoreDisplay({ results }: ResultsProps) {
-  if (!results) return null;
+export default function ScoreDisplay({ results, code }: ResultsProps) {
+  if (!results || code.trim().length === 0) return null;
 
   const totalPenaltyScore = results.violations.reduce((acc, viol) => {
     return acc + (weights[viol.impact ?? ""] || 0);

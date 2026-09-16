@@ -62,8 +62,8 @@ function App() {
             Clear
           </PrimaryButton>
         </section>
-        <ScoreDisplay results={results} />
-        <IssuesList results={results} />
+        <ScoreDisplay results={results} code={code} />
+        <IssuesList results={results} code={code} />
       </section>
     </main>
   );
