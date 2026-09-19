@@ -10,9 +10,14 @@ import { useTheme } from "./hooks/useTheme";
 import { useAnalyzer } from "./hooks/useAnalyzer";
 
 function App() {
-  const [code, setCode] = useState<string>(
-    () => localStorage.getItem("currentSnippet") || "",
-  );
+  const [code, setCode] = useState<string>(() => {
+    try {
+      return localStorage.getItem("currentSnippet") || "";
+    } catch (error) {
+      console.error("Unable to read the saved snippet:", error);
+      return "";
+    }
+  });
   const [results, setResults] = useState<AxeResults | null>(null);
   const { theme, handleTheme } = useTheme();
   const { handleAnalyze, loading, error } = useAnalyzer(code, setResults);
@@ -28,7 +33,11 @@ function App() {
 
   useEffect(() => {
     const handler = setTimeout(() => {
-      localStorage.setItem("currentSnippet", code);
+      try {
+        localStorage.setItem("currentSnippet", code);
+      } catch (error) {
+        console.error("Unable to save the snippet:", error);
+      }
     }, 500);
     return () => clearTimeout(handler);
   }, [code]);
@@ -55,7 +64,12 @@ function App() {
             onClick={() => {
               setCode("");
               setResults(null);
-              localStorage.removeItem("currentSnippet");
+
+              try {
+                localStorage.removeItem("currentSnippet");
+              } catch (error) {
+                console.error("Unable to remove the saved snippet:", error);
+              }
             }}
             disabled={!code || loading}
           >
