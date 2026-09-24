@@ -31,6 +31,19 @@ function App() {
     }
   };
 
+  let analysisMessage = "";
+  const issueCount = results?.violations.length;
+
+  if (loading) {
+    analysisMessage = "Analysis in progress.";
+  } else if (error) {
+    analysisMessage = `Analysis failed. ${error.message}`;
+  } else if (results) {
+    analysisMessage = `Analysis complete. ${issueCount} ${
+      issueCount === 1 ? "issue" : "issues"
+    } found.`;
+  }
+
   useEffect(() => {
     const handler = setTimeout(() => {
       try {
@@ -76,6 +89,9 @@ function App() {
             Clear
           </PrimaryButton>
         </section>
+        <p className="sr-only" role="status">
+          {analysisMessage}
+        </p>
         <ScoreDisplay results={results} code={code} />
         <IssuesList results={results} code={code} />
       </section>
