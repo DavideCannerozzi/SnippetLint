@@ -12,7 +12,7 @@ export default function AnalyzerButton({
     <div>
       <PrimaryButton
         onClick={handleAnalyze}
-        disabled={!code || loading}
+        disabled={!code.trim() || loading}
         buttonsRef={buttonsRef}
       >
         {loading ? "Loading..." : "Analyze"}

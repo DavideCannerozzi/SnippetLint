@@ -84,7 +84,7 @@ function App() {
                 console.error("Unable to remove the saved snippet:", error);
               }
             }}
-            disabled={!code || loading}
+            disabled={!code.trim() || loading}
           >
             Clear
           </PrimaryButton>
