@@ -2,7 +2,7 @@ import type { ResultsProps } from "../../types";
 
 export default function IssuesList({ results, code }: ResultsProps) {
   if (!results || code.trim().length === 0) return null;
-  if (results.violations.length === 0)
+  if (results.violations.length === 0 && results.incomplete.length === 0)
     return (
       <p className="mt-6 text-green-700 font-medium">
         ✓ No accessibility issues found
@@ -32,6 +32,30 @@ export default function IssuesList({ results, code }: ResultsProps) {
           </li>
         ))}
       </ul>
+      {results.incomplete.length > 0 && (
+        <>
+          <p className="mt-6">
+            Some accessibility checks need manual review. The items below
+            explain what could not be verified automatically.
+          </p>
+          <ul>
+            {results.incomplete.map((incomplete) => (
+              <li key={incomplete.id}>
+                <p className="mt-4">{incomplete.description}</p>
+                <a
+                  className="text-blue-600"
+                  href={incomplete.helpUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Learn more
+                  <span className="sr-only"> about {incomplete.help}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   );
 }
