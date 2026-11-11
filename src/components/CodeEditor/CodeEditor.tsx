@@ -1,8 +1,7 @@
 import Editor from "react-simple-code-editor";
 import type { CodeEditorProps } from "./CodeEditor.types";
 import { highlight, languages } from "prismjs/components/prism-core";
-import "prismjs/components/prism-clike";
-import "prismjs/components/prism-javascript";
+import "prismjs/components/prism-markup";
 
 export default function CodeEditor({
   code,
@@ -24,7 +23,7 @@ export default function CodeEditor({
         value={code}
         textareaId="code-editor"
         onValueChange={(newCode) => setCode(newCode)}
-        highlight={(code) => highlight(code, languages.js)}
+        highlight={(code) => highlight(code, languages.markup)}
         padding={20}
         placeholder="<!-- Paste your HTML snippet here -->"
         style={{
