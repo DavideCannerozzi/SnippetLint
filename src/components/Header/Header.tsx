@@ -27,7 +27,9 @@ export default function Header({ theme, handleTheme }: ThemeProps) {
             </li>
           </ul>
         </nav>
-        <button onClick={handleTheme}>{theme ? "Light" : "Dark"}</button>
+        <button onClick={handleTheme}>
+          {theme ? "Light Theme" : "Dark Theme"}
+        </button>
       </div>
     </header>
   );

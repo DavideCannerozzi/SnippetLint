@@ -12,7 +12,10 @@ export default function CodeEditor({
 }: CodeEditorProps) {
   return (
     <>
-      <label htmlFor="code-editor" className="block mb-2 font-medium">
+      <label
+        htmlFor="code-editor"
+        className="block mb-2 font-medium dark:text-slate-100"
+      >
         HTML snippet
       </label>
       <Editor
@@ -20,7 +23,7 @@ export default function CodeEditor({
         textareaClassName="focus:outline-none"
         value={code}
         textareaId="code-editor"
-        onValueChange={(code) => setCode(code)}
+        onValueChange={(newCode) => setCode(newCode)}
         highlight={(code) => highlight(code, languages.js)}
         padding={20}
         placeholder="<!-- Paste your HTML snippet here -->"

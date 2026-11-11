@@ -42,6 +42,14 @@ function App() {
     analysisMessage = `Analysis complete. ${issueCount} ${
       issueCount === 1 ? "issue" : "issues"
     } found.`;
+
+    const manualReviewCount = results.incomplete.length;
+    if (manualReviewCount > 0) {
+      analysisMessage +=
+        manualReviewCount === 1
+          ? " 1 check requires manual review."
+          : ` ${manualReviewCount} checks require manual review.`;
+    }
   }
 
   useEffect(() => {
